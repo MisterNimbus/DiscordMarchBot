@@ -2,6 +2,11 @@ import discord
 from discord.ext import commands
 from discord.utils import get
 import os
+import time
+
+folderPath = "/home/nimbus-pi/Desktop/CODE/DiscordMarchBot"
+
+time.sleep(10)
 
 # intent for discord
 intents = discord.Intents.default()
@@ -12,8 +17,7 @@ def read_bot_token(file_path):
     with open(file_path, 'r') as f:
         bot_token = f.read().strip()
     return bot_token
-
-bot_token = read_bot_token('./bot_token.txt')
+bot_token = read_bot_token(folderPath + '/bot_token.txt')
 
 
 # initialize an empty list to hold the queued urls
@@ -26,7 +30,7 @@ curr_channel = None
 vc = None
 
 # where the soundtracks are
-sound_folder = './tracks/'  # change this to the folder where your soundtracks are stored
+sound_folder = folderPath + '/tracks/'  # change this to the folder where your soundtracks are stored
 
 @bot.event
 async def on_ready():
@@ -172,18 +176,22 @@ async def usage(ctx):
 
 @bot.command()
 async def credits(ctx):
-    response = ("CREDITS:\n\n"
-                "Written by Kayra Oğuz and Anıl Karabulut\n"
-                "and of course...      ChatGPT 3.5\n"
-                "Aachen - Hannover - 2023\n"
+    response = ("```\n"
+                "------- Written by -------\n"
+                "|                        |\n"
+                "|     Anıl Karabulut     |\n"
+                "|       Kayra Oğuz       |\n"
+                "|      ChatGPT  3.5      |\n"
+                "|                        |\n"
+                "|   Aachen -- Hannover   |\n"
+                "|         2023           |\n"
+                "--------------------------```"
                 )
     await ctx.send(response)
 
 @bot.command(name='restart')
 async def restart_bot(ctx):
     await ctx.send('Restarting the bot...')
-    os.system('source ./restart.sh')
-
-print(bot_token)
+    os.system('bash ' + folderPath + '/restart.sh')
 
 bot.run(bot_token)
