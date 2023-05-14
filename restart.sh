@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# update folder
+git pull
+
 # Stop the asebot.py process
 pkill -f asebot.py
 
