@@ -5,6 +5,14 @@ import os
 
 bot = commands.Bot(command_prefix='!')
 
+def read_bot_token(file_path):
+    with open(file_path, 'r') as f:
+        bot_token = f.read().strip()
+    return bot_token
+
+
+bot_token = read_bot_token('/bot_token.txt')
+
 sound_folder = './tracks/'  # change this to the folder where your soundtracks are stored
 
 @bot.event
@@ -45,4 +53,4 @@ async def play_soundtrack(ctx, number: int):
     voice_client.play(source, after=lambda e: print(f"Finished playing {soundtrack}"))
     await ctx.send(f"Now playing: {soundtrack}")
 
-bot.run('MTEwNzI2ODQwNzg3NjkyMzUxNA.G755E1.okpFwhHUOneQ1e8H3nk0Qfa-ST3Tp7VwxqhnIA')
+bot.run(bot_token)
