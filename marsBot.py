@@ -166,6 +166,16 @@ async def usage(ctx):
                 "!pause - Pause the current audio.\n"
                 "!restart - Restart the bot.\n"
                 "!usage - Display this message.\n"
+                "!credits - Display cerdits.\n"
+                )
+    await ctx.send(response)
+
+@bot.command()
+async def credits(ctx):
+    response = ("CREDITS:\n\n"
+                "Written by Kayra Oğuz and Anıl Karabulut\n"
+                "and of course...      ChatGPT 3.5\n"
+                "Aachen - Hannover - 2023\n"
                 )
     await ctx.send(response)
 
